@@ -1,4 +1,4 @@
-module dm
+module github.com/bliubiu/go-dm-driver
 
 go 1.13
 
