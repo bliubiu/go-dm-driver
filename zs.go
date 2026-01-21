@@ -1,12 +1,12 @@
 /*
- * Copyright (c) 2000-2018, 达梦数据库有限公司.
+ * Copyright (c) 2000-2018, 达梦数据库有限公�?
  * All rights reserved.
  */
 
 package dm
 
 import (
-	"dm/util"
+	"github.com/bliubiu/go-dm-driver/util"
 	"fmt"
 	"math"
 	"strconv"
@@ -40,7 +40,7 @@ type oracleDateFormat struct {
 
 type element interface {
 	/**
-	 * 从字符串中解析出对应的值,
+	 * 从字符串中解析出对应的�?
 	 * @param str 完整的字符串
 	 * @param offset 当前偏移
 	 * @return 解析后的offset
@@ -48,7 +48,7 @@ type element interface {
 	parse(str string, offset int, dt []int) (int, error)
 
 	/**
-	 * 将时间值value格式化成字符串
+	 * 将时间值value格式化成字符�?
 	 */
 	format(dt []int) string
 }
@@ -100,7 +100,7 @@ var monthNameList = []string{"", "January", "February", "March", "April", "May",
 func (MonthElement monthElement) parse(str string, offset int, dt []int) (int, error) {
 
 	if MonthElement.OracleDateFormat.language == LANGUAGE_CN {
-		index := strings.IndexRune(str[offset:], '月')
+		index := strings.IndexRune(str[offset:], '�?)
 		if index == -1 {
 			return -1, ECGO_INVALID_DATETIME_FORMAT.throw()
 		}
@@ -115,7 +115,7 @@ func (MonthElement monthElement) parse(str string, offset int, dt []int) (int, e
 			return -1, ECGO_INVALID_DATETIME_VALUE.throw()
 		}
 		dt[OFFSET_MONTH] = int(mon)
-		return index + utf8.RuneLen('月'), nil
+		return index + utf8.RuneLen('�?), nil
 	} else {
 		str = str[offset:]
 		mon := 0
@@ -137,7 +137,7 @@ func (MonthElement monthElement) format(dt []int) string {
 	value := dt[OFFSET_MONTH]
 
 	if MonthElement.OracleDateFormat.language == LANGUAGE_CN {
-		return strconv.FormatInt(int64(value), 10) + "月"
+		return strconv.FormatInt(int64(value), 10) + "�?
 	}
 
 	if MonthElement.upperCase {
@@ -161,7 +161,7 @@ var monNameList []string = []string{"", "Jan", "Feb", "Mar", "Apr", "May", "Jun"
 func (MonElement monElement) parse(str string, offset int, dt []int) (int, error) {
 
 	if MonElement.OracleDateFormat.language == LANGUAGE_CN {
-		index := strings.IndexRune(str[offset:], '月') + offset
+		index := strings.IndexRune(str[offset:], '�?) + offset
 		if index == -1+offset {
 			return -1, ECGO_INVALID_DATETIME_FORMAT.throw()
 		}
@@ -175,7 +175,7 @@ func (MonElement monElement) parse(str string, offset int, dt []int) (int, error
 			return -1, ECGO_INVALID_DATETIME_VALUE.throw()
 		}
 		dt[OFFSET_MONTH] = int(mon)
-		return index + utf8.RuneLen('月'), nil
+		return index + utf8.RuneLen('�?), nil
 	} else {
 		str = str[offset : offset+3]
 		mon := 0
@@ -198,7 +198,7 @@ func (MonElement monElement) format(dt []int) string {
 	value := dt[OFFSET_MONTH]
 	language := int(0)
 	if language == LANGUAGE_CN {
-		return strconv.FormatInt(int64(value), 10) + "月"
+		return strconv.FormatInt(int64(value), 10) + "�?
 	}
 
 	if MonElement.upperCase {
@@ -545,10 +545,10 @@ func (AMElement amElement) parse(str string, offset int, dt []int) (int, error) 
 	if AMElement.OracleDateFormat.language == LANGUAGE_CN {
 		if util.StringUtil.EqualsIgnoreCase("下午", string(runeStr)) {
 			AMElement.OracleDateFormat.PM = true
-			return offset + utf8.RuneLen('下') + utf8.RuneLen('午'), nil
+			return offset + utf8.RuneLen('�?) + utf8.RuneLen('�?), nil
 		} else {
 			AMElement.OracleDateFormat.PM = false
-			return offset + utf8.RuneLen('上') + utf8.RuneLen('午'), nil
+			return offset + utf8.RuneLen('�?) + utf8.RuneLen('�?), nil
 		}
 
 	} else if util.StringUtil.EqualsIgnoreCase("PM", string(runeStr)) {
@@ -579,7 +579,7 @@ func (AMElement amElement) format(dt []int) string {
 }
 
 /**
- * 将int值格式化成指定长度，长度不足前面补0，长度超过的取末尾指定长度
+ * 将int值格式化成指定长度，长度不足前面�?，长度超过的取末尾指定长�?
  */
 func (OracleDateFormat *oracleDateFormat) formatInt(value int, len int) string {
 	pow := int(math.Pow10(len))
@@ -591,7 +591,7 @@ func (OracleDateFormat *oracleDateFormat) formatInt(value int, len int) string {
 }
 
 /**
- * 格式化毫秒值
+ * 格式化毫秒�?
  * @param ms
  * @param len <= 6
  */
@@ -670,11 +670,11 @@ func (OracleDateFormat *oracleDateFormat) parse(str string) (ret []int, err erro
 		}
 	}
 	if offset < len(str) {
-		//[6103]:文字与格式字符串不匹配.
+		//[6103]:文字与格式字符串不匹�?
 		return nil, ECGO_INVALID_DATETIME_VALUE.throw()
 	}
 
-	// 12小时制时间转换
+	// 12小时制时间转�?
 	if OracleDateFormat.PM {
 		dt[OFFSET_HOUR] = (dt[OFFSET_HOUR] + 12) % 24
 	}
@@ -744,7 +744,7 @@ func (OracleDateFormat *oracleDateFormat) format(dt []int) string {
 }
 
 /**
- * 解析格式串
+ * 解析格式�?
  */
 func (OracleDateFormat *oracleDateFormat) analysePattern(pattern string) ([]interface{}, error) {
 
@@ -768,7 +768,7 @@ func (OracleDateFormat *oracleDateFormat) analysePattern(pattern string) ([]inte
 		}
 	}
 
-	// 每个串按照从完整串，然后依次去掉一个末尾字符 来进行尝试规约
+	// 每个串按照从完整串，然后依次去掉一个末尾字�?来进行尝试规�?
 	for _, subPattern := range splitPatterns {
 		if len(subPattern) != 1 || unicode.IsDigit(rune(subPattern[0])) || unicode.IsLetter(rune(subPattern[0])) {
 			fmtWord := subPattern
@@ -781,7 +781,7 @@ func (OracleDateFormat *oracleDateFormat) analysePattern(pattern string) ([]inte
 						return nil, err
 					}
 					if element != nil {
-						// 忽略时区前面的+-号
+						// 忽略时区前面�?-�?
 						if element == OracleDateFormat.TZHElement || element == OracleDateFormat.TZMElement {
 							var lastFormatElement string = OracleDateFormat.FormatElementList[len(OracleDateFormat.FormatElementList)-1].(string)
 							if util.StringUtil.Equals("+", lastFormatElement) || util.StringUtil.Equals("-", lastFormatElement) {
@@ -799,7 +799,7 @@ func (OracleDateFormat *oracleDateFormat) analysePattern(pattern string) ([]inte
 				}
 
 				if i == 0 {
-					// 非标识符串
+					// 非标识符�?
 					OracleDateFormat.FormatElementList = append(OracleDateFormat.FormatElementList, subPattern)
 					break
 				}

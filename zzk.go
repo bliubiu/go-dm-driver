@@ -1,13 +1,13 @@
 /*
- * Copyright (c) 2000-2018, 达梦数据库有限公司.
+ * Copyright (c) 2000-2018, 达梦数据库有限公�?
  * All rights reserved.
  */
 package dm
 
 import (
 	"bytes"
-	"dm/parser"
-	"dm/util"
+	"github.com/bliubiu/go-dm-driver/parser"
+	"github.com/bliubiu/go-dm-driver/util"
 	"strconv"
 	"strings"
 )

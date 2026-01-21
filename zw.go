@@ -1,12 +1,12 @@
 /*
- * Copyright (c) 2000-2018, 达梦数据库有限公司.
+ * Copyright (c) 2000-2018, 达梦数据库有限公�?
  * All rights reserved.
  */
 
 package dm
 
 import (
-	"dm/util"
+	"github.com/bliubiu/go-dm-driver/util"
 	"math/rand"
 	"strconv"
 	"sync"
@@ -126,7 +126,7 @@ func (rwc *rwCounter) count(dest RWSiteEnum, standby *DmConnection) RWSiteEnum {
 }
 
 /**
-* 防止ntrx超出有效范围，等比调整
+* 防止ntrx超出有效范围，等比调�?
  */
 func (rwc *rwCounter) adjustNtrx() {
 	if rwc.ntrx_total >= INT64_MAX {
@@ -153,7 +153,7 @@ func (rwc *rwCounter) adjustNtrx() {
 	}
 
 	if rwc.flag[0] <= 0 && util.Sum(rwc.flag[1:]) <= 0 {
-		// 如果主库事务数以及所有备库事务数的总和 都 <= 0, 重置事务计数，给每个库的事务计数加上初始计数值
+		// 如果主库事务数以及所有备库事务数的总和 �?<= 0, 重置事务计数，给每个库的事务计数加上初始计数�?
 		for i := 0; i < len(rwc.flag); i++ {
 			rwc.flag[i] += rwc.increments[i]
 		}
@@ -184,7 +184,7 @@ func (rwc *rwCounter) getStandbyId(standby *DmConnection) int32 {
 	if !ok {
 		sid = int32(len(rwc.standbyIdMap) + 1) // 下标0是primary
 		if sid > rwc.standbyCount {
-			// 不在有效备库中
+			// 不在有效备库�?
 			return -1
 		}
 		rwc.standbyIdMap[key] = sid

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000-2018, 达梦数据库有限公司.
+ * Copyright (c) 2000-2018, 达梦数据库有限公�?
  * All rights reserved.
  */
 
@@ -7,7 +7,7 @@ package dm
 
 import (
 	"bufio"
-	"dm/util"
+	"github.com/bliubiu/go-dm-driver/util"
 	"io"
 	"os"
 	"runtime"
@@ -43,7 +43,7 @@ const (
 
 	STAT_SQL_REMOVE_OLDEST int = 1
 
-	// 编码字符集
+	// 编码字符�?
 	ENCODING_UTF8 string = "UTF-8"
 
 	ENCODING_EUCKR string = "EUC-KR"
@@ -63,18 +63,18 @@ const (
 
 	LogFlushQueueSizeDef = 100 //日志队列大小
 
-	LogBufferSizeDef = 32 * 1024 // 日志缓冲区大小 (>0)
+	LogBufferSizeDef = 32 * 1024 // 日志缓冲区大�?(>0)
 
 	// stat
 	StatEnableDef = false //
 
 	StatFlushFreqDef = 3 // 日志刷盘时间s (>=0)
 
-	StatSlowSqlCountDef = 100 // 慢sql top行数，(0-1000)
+	StatSlowSqlCountDef = 100 // 慢sql top行数�?0-1000)
 
-	StatHighFreqSqlCountDef = 100 // 高频sql top行数， (0-1000)
+	StatHighFreqSqlCountDef = 100 // 高频sql top行数�?(0-1000)
 
-	StatSqlMaxCountDef = 100000 // sql 统计最大值(0-100000)
+	StatSqlMaxCountDef = 100000 // sql 统计最大�?0-100000)
 
 	StatSqlRemoveModeDef = STAT_SQL_REMOVE_LATEST // 记录sql数超过最大值时，sql淘汰方式
 )
@@ -82,7 +82,7 @@ const (
 var (
 	DbAliveCheckFreq = DbAliveCheckFreqDef
 
-	Locale = LocaleDef // 0:简体中文 1：英文 2:繁体中文
+	Locale = LocaleDef // 0:简体中�?1：英�?2:繁体中文
 
 	// log
 	LogLevel = LogLevelDef // 日志级别：off, error, warn, sql, info, all
@@ -93,7 +93,7 @@ var (
 
 	LogFlushQueueSize = LogFlushQueueSizeDef
 
-	LogBufferSize = LogBufferSizeDef // 日志缓冲区大小 (>0)
+	LogBufferSize = LogBufferSizeDef // 日志缓冲区大�?(>0)
 
 	// stat
 	StatEnable = StatEnableDef //
@@ -102,11 +102,11 @@ var (
 
 	StatFlushFreq = StatFlushFreqDef // 日志刷盘时间s (>=0)
 
-	StatSlowSqlCount = StatSlowSqlCountDef // 慢sql top行数，(0-1000)
+	StatSlowSqlCount = StatSlowSqlCountDef // 慢sql top行数�?0-1000)
 
-	StatHighFreqSqlCount = StatHighFreqSqlCountDef // 高频sql top行数， (0-1000)
+	StatHighFreqSqlCount = StatHighFreqSqlCountDef // 高频sql top行数�?(0-1000)
 
-	StatSqlMaxCount = StatSqlMaxCountDef // sql 统计最大值(0-100000)
+	StatSqlMaxCount = StatSqlMaxCountDef // sql 统计最大�?0-100000)
 
 	StatSqlRemoveMode = StatSqlRemoveModeDef // 记录sql数超过最大值时，sql淘汰方式
 
@@ -144,14 +144,14 @@ func load(filePath string) {
 
 	// GlobalProperties = NewProperties()
 	var groupProps *Properties
-	var line string //dm_svc.conf读取到的一行
+	var line string //dm_svc.conf读取到的一�?
 
 	for line, err = fileReader.ReadString('\n'); line != "" && (err == nil || err == io.EOF); line, err = fileReader.ReadString('\n') {
-		// 去除#标记的注释
+		// 去除#标记的注�?
 		if notesIndex := strings.IndexByte(line, '#'); notesIndex != -1 {
 			line = line[:notesIndex]
 		}
-		// 去除前后多余的空格
+		// 去除前后多余的空�?
 		line = strings.TrimSpace(line)
 		if line == "" {
 			continue
@@ -183,7 +183,7 @@ func load(filePath string) {
 			if key == "" || value == "" {
 				continue
 			}
-			// 区分属性是全局的还是组的
+			// 区分属性是全局的还是组�?
 			var success bool
 			if groupProps.IsNil() {
 				success = SetServerGroupProperties(GlobalProperties, key, value)

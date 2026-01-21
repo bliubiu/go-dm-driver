@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000-2018, 达梦数据库有限公司.
+ * Copyright (c) 2000-2018, 达梦数据库有限公�?
  * All rights reserved.
  */
 package dm
@@ -9,8 +9,8 @@ import (
 	"context"
 	"database/sql"
 	"database/sql/driver"
-	"dm/parser"
-	"dm/util"
+	"github.com/bliubiu/go-dm-driver/parser"
+	"github.com/bliubiu/go-dm-driver/util"
 	"fmt"
 	"golang.org/x/text/encoding"
 	"sync"

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000-2018, 达梦数据库有限公司.
+ * Copyright (c) 2000-2018, 达梦数据库有限公�?
  * All rights reserved.
  */
 
@@ -8,7 +8,7 @@ package dm
 import (
 	"context"
 	"database/sql/driver"
-	"dm/util"
+	"github.com/bliubiu/go-dm-driver/util"
 	"io"
 	"reflect"
 	"time"
@@ -28,7 +28,7 @@ const SQL_GET_DSC_EP_SITE = "SELECT " +
 type reconnectFilter struct {
 }
 
-// 一定抛错
+// 一定抛�?
 func (rf *reconnectFilter) autoReconnect(connection *DmConnection, err error) error {
 	if dmErr, ok := err.(*DmError); ok {
 		if dmErr.ErrCode == ECGO_COMMUNITION_ERROR.ErrCode || dmErr.ErrCode == ECGO_CONNECTION_CLOSED.ErrCode {
@@ -45,9 +45,9 @@ func (rf *reconnectFilter) autoReconnect(connection *DmConnection, err error) er
 	return err
 }
 
-// 一定抛错
+// 一定抛�?
 func (rf *reconnectFilter) reconnect(connection *DmConnection, reason string) error {
-	// 读写分离，重连需要处理备机
+	// 读写分离，重连需要处理备�?
 	var err error
 	if connection.dmConnector.rwSeparate {
 		err = RWUtil.reconnect(connection)

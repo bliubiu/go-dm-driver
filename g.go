@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2000-2018, 达梦数据库有限公司.
+ * Copyright (c) 2000-2018, 达梦数据库有限公�?
  * All rights reserved.
  */
 package dm
 
 import (
-	"dm/util"
+	"github.com/bliubiu/go-dm-driver/util"
 	"fmt"
 	"math"
 	"os"
@@ -1710,7 +1710,7 @@ func (sr *StatReader) getConnStatDetailList(params *Properties) []map[string]int
 	if data != nil {
 		dataValue := data.getValue(false)
 		m := make(map[string]interface{}, 2)
-		m["name"] = "数据源"
+		m["name"] = "数据�?
 		m["value"] = dataValue.url
 		array = append(array, m)
 
@@ -1720,12 +1720,12 @@ func (sr *StatReader) getConnStatDetailList(params *Properties) []map[string]int
 		array = append(array, m)
 
 		m = make(map[string]interface{}, 2)
-		m["name"] = "活动会话数"
+		m["name"] = "活动会话�?
 		m["value"] = dataValue.activeConnCount
 		array = append(array, m)
 
 		m = make(map[string]interface{}, 2)
-		m["name"] = "活动会话数峰值"
+		m["name"] = "活动会话数峰�?
 		m["value"] = dataValue.maxActiveStmtCount
 		array = append(array, m)
 
@@ -1735,12 +1735,12 @@ func (sr *StatReader) getConnStatDetailList(params *Properties) []map[string]int
 		array = append(array, m)
 
 		m = make(map[string]interface{}, 2)
-		m["name"] = "活动句柄数"
+		m["name"] = "活动句柄�?
 		m["value"] = dataValue.activeStmtCount
 		array = append(array, m)
 
 		m = make(map[string]interface{}, 2)
-		m["name"] = "活动句柄数峰值"
+		m["name"] = "活动句柄数峰�?
 		m["value"] = dataValue.maxActiveStmtCount
 		array = append(array, m)
 

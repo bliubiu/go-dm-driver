@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000-2018, 达梦数据库有限公司.
+ * Copyright (c) 2000-2018, 达梦数据库有限公�?
  * All rights reserved.
  */
 package dm
@@ -8,7 +8,7 @@ import (
 	"bytes"
 	"context"
 	"crypto/tls"
-	"dm/security"
+	"github.com/bliubiu/go-dm-driver/security"
 	"fmt"
 	"net"
 	"strconv"

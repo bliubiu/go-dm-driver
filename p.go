@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2000-2018, 达梦数据库有限公司.
+ * Copyright (c) 2000-2018, 达梦数据库有限公�?
  * All rights reserved.
  */
 package dm
@@ -8,7 +8,7 @@ import (
 	"context"
 	"database/sql"
 	"database/sql/driver"
-	"dm/i18n"
+	"github.com/bliubiu/go-dm-driver/i18n"
 	"net"
 	"sync"
 )
@@ -48,10 +48,10 @@ func newDmDriver() *DmDriver {
 	return d
 }
 
-// 支持自定义连接网络地址，返回标准net.Conn对象，相关数据库操作的消息包都将发送到该对象
+// 支持自定义连接网络地址，返回标准net.Conn对象，相关数据库操作的消息包都将发送到该对�?
 type DialFunc func(addr string) (net.Conn, error)
 
-// 支持自定义连接网络地址，返回标准net.Conn对象，相关数据库操作的消息包都将发送到该对象
+// 支持自定义连接网络地址，返回标准net.Conn对象，相关数据库操作的消息包都将发送到该对�?
 type DialContextFunc func(ctx context.Context, addr string) (net.Conn, error)
 
 var (
@@ -59,14 +59,14 @@ var (
 	dials     map[string]DialContextFunc
 )
 
-// 注册自定义连接方法
+// 注册自定义连接方�?
 func RegisterDial(dialName string, dial DialFunc) {
 	RegisterDialContext(dialName, func(_ context.Context, addr string) (net.Conn, error) {
 		return dial(addr)
 	})
 }
 
-// 注册自定义连接方法
+// 注册自定义连接方�?
 func RegisterDialContext(dialName string, dial DialContextFunc) {
 	dialsLock.Lock()
 	defer dialsLock.Unlock()
